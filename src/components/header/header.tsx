@@ -6,7 +6,7 @@ import styles from "./header.module.css";
 export default function Header() {
   return (
     <header
-      className={`border-b-[1px] border-b-bg-dark gap-6 grid grid-cols-2 justify-between outline outline-1 outline-bg-light pb-4 pt-7 px-3 ${styles.header}`}
+      className={`border-b-[1px] border-b-bg-dark gap-6 grid grid-cols-2 justify-between outline outline-1 outline-bg-light pb-4 lg:pb-9 pt-7 lg:pt-9 px-3 lg:px-6 ${styles.header}`}
     >
       <Link
         className="gap-6 grid grid-cols-[auto_1fr] hover:text-text text-white"
@@ -21,7 +21,7 @@ export default function Header() {
           priority={true}
         />
         <div className="flex flex-col justify-center">
-          <p className="text-xl sm:text-xl md:text:2xl">Bob Moriasi</p>
+          <p className="text-xl sm:text-xl md:text-2xl">Bob Moriasi</p>
           <p className="duration-500 font-medium hover:text-text-light text-text-dark text-xs sm:text-sm transition-all">
             Designer, Saxophonist, Student
           </p>
