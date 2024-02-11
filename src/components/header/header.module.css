@@ -1,0 +1,6 @@
+@media (max-width: 700px)
+{
+    .header {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
