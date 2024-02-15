@@ -1,0 +1,42 @@
+.header {
+  grid-area: header;
+}
+.posts {
+  grid-area: posts;
+}
+.footer {
+  grid-area: footer;
+}
+
+.recentposts {
+  display: grid;
+  column-gap: 2rem;
+  grid-template-areas:
+    "header"
+    "posts"
+    "footer";
+  grid-template-columns: 1fr;
+  position: relative;
+}
+
+.recentposts::before {
+  border-bottom: 1px solid #2a4236;
+  border-top: 1px solid #1c2f25;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -4.5rem;
+  left: 2.25rem;
+  right: 2.25rem;
+}
+
+@media (min-width: 800px) {
+  .recentposts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "header posts posts"
+      ". posts posts"
+      ". footer footer";
+  }
+}
