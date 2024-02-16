@@ -6,7 +6,7 @@ export default function Connect() {
     <section
       className={`max-w-[70rem] mx-auto mb-36 px-5 lg:px-7 lg:text-lg ${styles.connect}`}
     >
-      <h2 className={"text-2xl md:text-4xl text-text"}>Let's connect</h2>
+      <h2 className={"text-2xl md:text-4xl text-text"}>Let&apos;s connect</h2>
       <small className={"text-text-dark"}>I don't bite. I promise you.</small>
       <div
         className={
