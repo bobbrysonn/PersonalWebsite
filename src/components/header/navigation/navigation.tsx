@@ -1,23 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./navigation.module.css";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
+  const pathname = usePathname();
+
   return (
     <nav className={`items-center flex gap-3 justify-end  ${styles.navbar}`}>
       <Link
-        className={`bg-bg-light duration-500 hover:bg-highlight hover:text-bg-light px-3 py-2 rounded-md transition-all text-sm lg:text-base ${styles.link}`}
+        className={`${
+          pathname === "/" ? "bg-bg-light" : "text-text"
+        } duration-300 hover:bg-highlight hover:text-bg-light px-3 py-2 rounded-md transition-all text-sm lg:text-base ${
+          styles.link
+        }`}
         href={"/"}
       >
         Home
       </Link>
       <Link
-        className={`duration-500 hover:bg-highlight hover:text-bg-light px-4 py-2 rounded-md text-text transition-all text-sm lg:text-base ${styles.link}`}
+        className={`${
+          pathname === "/blog" ? "bg-bg-light" : "text-text"
+        } duration-300 hover:bg-highlight hover:text-bg-light px-4 py-2 rounded-md transition-all text-sm lg:text-base ${
+          styles.link
+        }`}
         href={"/blog"}
       >
         Blog
       </Link>
       <Link
-        className={`duration-500 hover:bg-highlight px-2 py-2 rounded-md text-text ${styles.arrow_icon}`}
+        className={`duration-300 hover:bg-highlight hover:text-bg-light px-2 py-2 rounded-md text-text ${styles.arrow_icon}`}
         href={"mailto:official.bobmoriasi@gmail.com"}
       >
         <svg
@@ -34,7 +47,7 @@ export default function Navigation() {
       </Link>
       <Link
         className={
-          "duration-500 hover:bg-highlight px-2 py-2 rounded-md text-text"
+          "duration-300 hover:bg-highlight hover:text-bg-light px-2 py-2 rounded-md text-text"
         }
         href={"https://instagram.com/bobbrysonn"}
       >
@@ -52,7 +65,7 @@ export default function Navigation() {
       </Link>
       <Link
         className={
-          "duration-500 hover:bg-highlight px-2 py-2 rounded-md text-text"
+          "duration-300 hover:bg-highlight hover:text-bg-light px-2 py-2 rounded-md text-text"
         }
         href={"https://open.spotify.com/user/315t4dtdussxpafdwl4h6vehulfq"}
       >

@@ -8,8 +8,8 @@ export default function RecentPosts() {
     >
       <header className={`${styles.header}`}>
         <h2 className={"text-2xl md:text-4xl text-text"}>Recent Posts</h2>
-        <small className={"block mb-9"}>
-          Should probably start writing more haha
+        <small className={"block mb-9 text-text-dark"}>
+          Should probably start writing more haha!
         </small>
       </header>
       <div className={`${styles.posts}`}>
