@@ -7,7 +7,9 @@ export default function Connect() {
       className={`max-w-[70rem] mx-auto mb-36 px-5 lg:px-7 lg:text-lg ${styles.connect}`}
     >
       <h2 className={"text-2xl md:text-4xl text-text"}>Let&apos;s connect</h2>
-      <small className={"text-text-dark"}>I don't bite. I promise you.</small>
+      <small className={"text-text-dark"}>
+        I don&apos;t bite. I promise you.
+      </small>
       <div
         className={
           "gap-6 grid grid-cols-[1fr] md:grid-cols-[repeat(2,_1fr)] mt-8"
