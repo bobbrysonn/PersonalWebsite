@@ -1,0 +1,14 @@
+.endnote {
+  position: relative;
+}
+
+.endnote::before {
+  border-bottom: 1px solid #2a4236;
+  border-top: 1px solid #1c2f25;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
+}

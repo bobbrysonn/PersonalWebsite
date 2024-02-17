@@ -4,7 +4,7 @@ import styles from "./connect.module.css";
 export default function Connect() {
   return (
     <section
-      className={`max-w-[70rem] mx-auto mb-36 px-5 lg:px-7 lg:text-lg ${styles.connect}`}
+      className={`max-w-[70rem] mx-auto mb-56 px-5 lg:px-7 lg:text-lg ${styles.connect}`}
     >
       <h2 className={"text-2xl md:text-4xl text-text"}>Let&apos;s connect</h2>
       <small className={"text-text-dark"}>

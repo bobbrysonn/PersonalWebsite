@@ -1,0 +1,40 @@
+.about {
+  grid-area: about;
+}
+
+.content {
+  grid-area: footer-content;
+}
+
+.grid_stuff {
+  display: grid;
+  align-items: start;
+  grid-gap: 2rem 1rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "about"
+    "footer-content";
+}
+
+@media (min-width: 768px) {
+  .grid_stuff {
+    grid-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "about footer-content footer-content";
+  }
+}
+
+.footer {
+  position: relative;
+}
+
+.footer::before {
+  border-bottom: 1px solid #2a4236;
+  border-top: 1px solid #1c2f25;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -4.5rem;
+  left: 0rem;
+  right: 0rem;
+}
