@@ -17,7 +17,7 @@ export default function Connect() {
       >
         <Link
           className={
-            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-2 rounded-md text-text transition-colors"
+            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-3 rounded-md text-text transition-colors"
           }
           href={"mailto:officialbobmoriasi@gmail.com?subject=Inquiry"}
         >
@@ -36,7 +36,7 @@ export default function Connect() {
         </Link>
         <Link
           className={
-            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-2 rounded-md text-text transition-colors"
+            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-3 rounded-md text-text transition-colors"
           }
           href={"https://open.spotify.com/user/315t4dtdussxpafdwl4h6vehulfq"}
         >
@@ -55,7 +55,7 @@ export default function Connect() {
         </Link>
         <Link
           className={
-            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-2 rounded-md text-text transition-colors"
+            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-3 rounded-md text-text transition-colors"
           }
           href={"https://instagram.com/bobbrysonn"}
         >
@@ -74,7 +74,7 @@ export default function Connect() {
         </Link>
         <Link
           className={
-            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-2 rounded-md text-text transition-colors"
+            "border-2 border-bg-light duration-500 flex hover:bg-highlight hover:text-bg-light items-center justify-between max-w-[28rem] p-3 rounded-md text-text transition-colors"
           }
           href={"https://twitter.com/bobbrysonn"}
         >
