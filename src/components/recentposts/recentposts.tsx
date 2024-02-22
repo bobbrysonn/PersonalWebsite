@@ -1,117 +1,86 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import styles from "./recentposts.module.css";
 
 export default function RecentPosts() {
+  const [posts, setPosts] = useState<[Post]>([
+    {
+      id: 1,
+      title: "No posts available",
+      content: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ]);
+
+  useEffect(() => {
+    fetch("/api/posts?latest=true")
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, [posts]);
+
   return (
     <section
-      className={`max-w-[70rem] mx-auto mb-36 px-5 lg:px-7 lg:text-lg ${styles.recentposts}`}
+      className={`mx-auto mb-36 max-w-[70rem] px-5 lg:px-7 lg:text-lg ${styles.recentposts}`}
     >
-      <header className={`${styles.header}`}>
-        <h2 className={"text-2xl md:text-4xl text-text"}>Recent Posts</h2>
-        <small className={"block mb-9 text-text-dark"}>
+      <header className={`${styles.header} md:mt-4`}>
+        <h2 className={"text-text text-2xl md:text-4xl"}>Recent Posts</h2>
+        <small className={"text-text-dark mb-9 block"}>
           Should probably start writing more haha!
         </small>
       </header>
       <div className={`${styles.posts}`}>
-        <div className={"mt-2"}>
-          <div
-            className={
-              "gap-x-1 md:gap-x-2 grid grid-cols-[auto_1fr_auto] items-baseline"
-            }
-          >
-            <Link
-              className={
-                "duration-300 hover:text-highlight text-base md:text-2xl text-text transition-all"
-              }
-              href={"/"}
-            >
-              The stillness of snow
-            </Link>
-            <div className={"border-b-2 border-b-bg-light min-w-4 h-4"}></div>
-            <p className={"italic text-text"}>Jan 25, 2024</p>
-          </div>
-        </div>
-        <div className={"mt-4 md:mt-6"}>
-          <div
-            className={
-              "gap-x-1 md:gap-x-2 grid grid-cols-[auto_1fr_auto] items-baseline"
-            }
-          >
-            <Link
-              className={
-                "duration-300 hover:text-highlight text-base md:text-2xl text-text transition-all"
-              }
-              href={"/"}
-            >
-              The art of making many
-            </Link>
-            <div className={"border-b-2 border-b-bg-light min-w-4 h-4"}></div>
-            <p className={"italic text-text"}>Jan 25, 2024</p>
-          </div>
-        </div>
-        <div className={"mt-4 md:mt-6"}>
-          <div
-            className={
-              "gap-x-1 md:gap-x-2 grid grid-cols-[auto_1fr_auto] items-baseline"
-            }
-          >
-            <Link
-              className={
-                "duration-300 hover:text-highlight text-base md:text-2xl text-text transition-all"
-              }
-              href={"/"}
-            >
-              Internet friendships
-            </Link>
-            <div className={"border-b-2 border-b-bg-light min-w-4 h-4"}></div>
-            <p className={"italic text-text"}>Jan 25, 2024</p>
-          </div>
-        </div>
-        <div className={"mt-4 md:mt-6"}>
-          <div
-            className={
-              "gap-x-1 md:gap-x-2 grid grid-cols-[auto_1fr_auto] items-baseline"
-            }
-          >
-            <Link
-              className={
-                "duration-300 hover:text-highlight text-base md:text-2xl text-text transition-all"
-              }
-              href={"/"}
-            >
-              Subscription to Christmas
-            </Link>
-            <div className={"border-b-2 border-b-bg-light min-w-4 h-4"}></div>
-            <p className={"italic text-text"}>Jan 25, 2024</p>
-          </div>
-        </div>
-        <div className={"mt-4 md:mt-6"}>
-          <div
-            className={
-              "gap-x-1 md:gap-x-2 grid grid-cols-[auto_1fr_auto] items-baseline"
-            }
-          >
-            <Link
-              className={
-                "duration-300 hover:text-highlight text-base md:text-2xl text-text transition-all"
-              }
-              href={"/"}
-            >
-              On songwriting
-            </Link>
-            <div className={"border-b-2 border-b-bg-light min-w-4 h-4"}></div>
-            <p className={"italic text-text"}>Jan 25, 2024</p>
-          </div>
-        </div>
+        {posts.map((post) => (
+          <Post post={post} key={post.id} />
+        ))}
       </div>
       <footer className={`${styles.footer}`}>
         <Link
-          className={`block duration-300 font-medium mt-8 text-sm text-text-dark hover:text-text transtion-colors uppercase ${styles.browsearchive}`}
+          className={`text-text-dark hover:text-text transtion-colors mt-8 block text-sm font-medium uppercase duration-300 ${styles.browsearchive}`}
           href={"/blog"}
         >
           Browse the full archive
         </Link>
       </footer>
     </section>
+  );
+}
+
+type Post = {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+function Post({ post }: { post: Post }) {
+  return (
+    <div className={"mt-4 md:mt-6"}>
+      <div
+        className={
+          "grid grid-cols-[auto_1fr_auto] items-baseline gap-x-1 md:gap-x-2"
+        }
+      >
+        <Link
+          className={
+            "hover:text-highlight text-text text-base transition-all duration-300 md:text-2xl"
+          }
+          href={"/"}
+        >
+          {post.title}
+        </Link>
+        <div className={"border-b-bg-light h-4 min-w-4 border-b-2"}></div>
+        <p className={"text-text italic"}>
+          {new Date(post.createdAt).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </p>
+      </div>
+    </div>
   );
 }
