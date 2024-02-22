@@ -14,14 +14,14 @@ export async function GET(request: Request) {
 const posts = [
   {
     id: 1,
-    title: "The stillness of snow",
+    title: "Stillness of snow",
     content: "Something",
     createdAt: new Date(),
     updatedAt: new Date(),
   },
   {
     id: 2,
-    title: "The art of making many",
+    title: "The art of making",
     content: "Something",
     createdAt: new Date(),
     updatedAt: new Date(),
