@@ -4,7 +4,9 @@ import styles from "./footer.module.css";
 export default function Footer() {
   return (
     <footer className={`px-4 ${styles.footer}`}>
-      <div className={`max-w-[70rem] mx-auto pt-16 pb-32 ${styles.grid_stuff}`}>
+      <div
+        className={`max-w-[70rem] mx-auto pt-4 lg:pt-16 pb-32 ${styles.grid_stuff}`}
+      >
         <Link className={`${styles.about}`} href={"/"}>
           <div>
             <p
