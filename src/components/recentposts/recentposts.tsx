@@ -73,7 +73,7 @@ function Post({ post }: { post: Post }) {
           {post.title}
         </Link>
         <div className={"border-b-bg-light h-4 min-w-4 border-b-2"}></div>
-        <p className={"text-text italic"}>
+        <p className={"text-text"}>
           {new Date(post.createdAt).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
