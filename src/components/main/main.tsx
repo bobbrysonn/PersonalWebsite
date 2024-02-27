@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Playfair_Display } from "next/font/google";
+import { ReactNode } from "react";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -18,40 +19,39 @@ export default function Main() {
             "text-text-light text-xl lg:text-2xl leading-8 lg:leading-9"
           }
         >
-          I am a designer with 10+ years of experience in creating clear and
-          effective solutions for brands of all sizes.
+          I am a sophomore at Dartmouth currently studying Computer Engineering
+          while exploring embedded and web development.
         </h3>
       </div>
       <div className="pb-8 max-w-[40rem] ">
         <p className={"text-text leading-8"}>
-          In 2012, I founded{" "}
-          <a
-            href=""
-            className={
-              "text-highlight underline decoration-bg-light decoration-4"
-            }
-          >
-            Designed Space
-          </a>{" "}
-          where I occasionally write and conduct interviews about creativity and
-          design. Since 2020, I&apos;ve been a senior designer at{" "}
-          <a
-            href=""
-            className={
-              "text-highlight underline decoration-bg-light decoration-4"
-            }
-          >
-            Orion
-          </a>
-          , guiding its rebrand in the FinTech market.
+          I enjoy diving deep into the intricacies of embedded systems on my{" "}
+          <HighLightedLink href="https://digilent.com/reference/programmable-logic/zybo-z7/start">
+            Zynq 7000
+          </HighLightedLink>{" "}
+          board from{" "}
+          <HighLightedLink href="https://digilent.com">
+            Diligent
+          </HighLightedLink>
+          , exploring the marriage of hardware and software to build robust and
+          efficient solutions. When not tinkering with hardware, I develop
+          frontends with{" "}
+          <HighLightedLink href="https://nextjs.org">NextJS</HighLightedLink>{" "}
+          and backends with{" "}
+          <HighLightedLink href="https://www.prisma.io">Prisma</HighLightedLink>{" "}
+          &{" "}
+          <HighLightedLink href="https://expressjs.com">
+            Express
+          </HighLightedLink>
+          .
         </p>
       </div>
       <div className="pb-8 max-w-[40rem] ">
         <p className="text-text leading-8">
-          In addition to design, I am a musician and a sculptor focusing on
-          crafting forms from wood. Outside of the internet, you can find me and
-          my lovely fiancé, Julia, enjoying our Pennsylvania woodlands with our
-          dogs.
+          In addition to software design, I am a musician and artist, currently
+          exploring jazz on the tenor saxophone. Outside of the internet, you
+          can find me and my lovely cat, Whiskers, hiking in the woods in the
+          expansive upper valley.
         </p>
       </div>
       <figure className={"max-w-[40rem]"}>
@@ -67,5 +67,23 @@ export default function Main() {
         <figcaption className="text-xs pt-1">↑ Myself</figcaption>
       </figure>
     </main>
+  );
+}
+
+function HighLightedLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      className={"text-highlight underline decoration-bg-light decoration-4"}
+    >
+      {children}
+    </a>
   );
 }

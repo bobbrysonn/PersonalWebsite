@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./navigation/navigation";
 import styles from "./header.module.css";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
   return (
@@ -24,7 +23,7 @@ export default function Header() {
         <div className="flex flex-col justify-center">
           <p className="text-xl sm:text-xl md:text-2xl">Bob Moriasi</p>
           <p className="duration-500 font-medium hover:text-text-light text-text-dark text-xs sm:text-sm transition-all">
-            Designer, Saxophonist, Student
+            Developer, Saxophonist, Student
           </p>
         </div>
       </Link>
