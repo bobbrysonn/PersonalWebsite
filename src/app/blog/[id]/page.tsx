@@ -44,7 +44,7 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
 function Paragraph({ children }: { children: ReactNode }) {
   return (
     <div className={"mt-8"}>
-      <p className={"text-text max-w-[40rem] leading-8"}>{children}</p>
+      <div className={"text-text max-w-[40rem] leading-8"}>{children}</div>
     </div>
   );
 }
@@ -59,6 +59,7 @@ function Picture({ url, caption }: { url: string; caption: string }) {
         width={0}
         height={0}
         sizes="100vh"
+        priority={true}
       />
       <figcaption className="text-text-light pt-1 text-sm">
         {caption}
