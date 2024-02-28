@@ -20,6 +20,8 @@ model Post {
   title      String
   content    String
   intro      String     @default("")
+  bannerURL  String     @default("")
+  bannerText String     @default("")
   likes      Int        @default(0)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt

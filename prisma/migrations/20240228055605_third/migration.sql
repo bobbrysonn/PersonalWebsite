@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Post" ADD COLUMN     "bannerText" TEXT NOT NULL DEFAULT '',
+ADD COLUMN     "bannerURL" TEXT NOT NULL DEFAULT '';
