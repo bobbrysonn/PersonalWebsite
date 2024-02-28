@@ -9,27 +9,33 @@ export default async function BlogsPage() {
     <main className={"max-w-[70rem] mb-36 mx-auto px-5 lg:px-7 lg:text-lg"}>
       {/* Heading */}
       <div className={"mt-16 mb-4"}>
-        <h1 className={`font-semibold text-3xl text-white}`}>
+        <h1 className={`font-semibold text-3xl text-text`}>
           Musings and Ramblings
         </h1>
-        <p className={""}>
-          A collection of all the things I wrote in the recent past
-        </p>
+        <p>A collection of all the things I have written</p>
       </div>
 
       {/* Posts */}
       <div className="relative grid grid-cols-1 xl:grid-cols-2 gap-10 mt-10">
         {posts.map((post, idx) => {
           return (
-            <DirectionAwareHover key={idx} imageUrl={post.bannerURL}>
+            <div key={idx}>
+              <DirectionAwareHover imageUrl={post.bannerURL}>
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="font-bold text-xl hover:text-highlight transition-colors duration-300"
+                >
+                  {post.title}
+                </Link>
+                <p className="font-normal text-sm pt-2">{post.bannerText}</p>
+              </DirectionAwareHover>
               <Link
                 href={`/blog/${post.id}`}
-                className="font-bold text-xl hover:text-highlight transition-colors duration-300"
+                className="text-text-light pt-1 text-sm ml-1 hover:text-highlight transition-colors duration-300"
               >
-                {post.title}
+                ↑ {post.title}
               </Link>
-              <p className="font-normal text-sm pt-2">{post.bannerText}</p>
-            </DirectionAwareHover>
+            </div>
           );
         })}
       </div>
