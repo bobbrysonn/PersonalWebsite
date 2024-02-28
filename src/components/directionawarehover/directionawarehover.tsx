@@ -65,7 +65,7 @@ export const DirectionAwareHover = ({
       onMouseEnter={handleMouseEnter}
       ref={ref}
       className={cn(
-        "md:h-[36rem] w-[22rem] h-80 md:w-[40rem] bg-transparent rounded-lg overflow-hidden group/card relative",
+        "md:h-[32rem] w-[22rem] h-80 md:w-[32rem] bg-transparent rounded-lg overflow-hidden group/card relative",
         className
       )}
     >
@@ -94,8 +94,10 @@ export const DirectionAwareHover = ({
               width="1000"
               height="1000"
               src={imageUrl}
+              priority={true}
             />
           </motion.div>
+
           <motion.div
             variants={textVariants}
             transition={{
