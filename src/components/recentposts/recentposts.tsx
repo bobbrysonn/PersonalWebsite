@@ -1,29 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import styles from "./recentposts.module.css";
+import { fetchLatestPosts } from "@/utils/data";
 
-export default function RecentPosts() {
-  const [posts, setPosts] = useState<[Post]>([
-    {
-      id: 1,
-      title: "No posts available",
-      content: "",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ]);
-
-  useEffect(() => {
-    fetch("/api/posts?latest=true")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, [posts]);
+export default async function RecentPosts() {
+  const posts = await fetchLatestPosts();
 
   return (
     <section
-      className={`mx-auto mb-36 max-w-[70rem] px-5 lg:px-7 lg:text-lg ${styles.recentposts}`}
+      className={`mx-auto mb-36 lg:mb-44 max-w-[70rem] px-5 lg:px-7 lg:text-lg ${styles.recentposts}`}
     >
       <header className={`${styles.header} md:mt-4`}>
         <h2 className={"text-text text-2xl md:text-4xl"}>Recent Posts</h2>
@@ -49,11 +33,13 @@ export default function RecentPosts() {
 }
 
 type Post = {
-  id: number;
+  id: string;
   title: string;
   content: string;
+  likes: number;
   createdAt: Date;
   updatedAt: Date;
+  published: boolean;
 };
 
 function Post({ post }: { post: Post }) {
@@ -68,7 +54,7 @@ function Post({ post }: { post: Post }) {
           className={
             "hover:text-highlight text-text text-base transition-all duration-300 md:text-2xl"
           }
-          href={"/"}
+          href={`/blog/${post.id}`}
         >
           {post.title}
         </Link>
