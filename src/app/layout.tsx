@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
+import EndNote from "@/components/endnote/endnote";
 
 const karla = Karla({ subsets: ["latin"] });
 
@@ -56,6 +58,8 @@ export default function RootLayout({
       <body className={karla.className}>
         <Header />
         {children}
+        <Footer />
+        <EndNote />
       </body>
     </html>
   );
