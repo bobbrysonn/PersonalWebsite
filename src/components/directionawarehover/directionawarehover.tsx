@@ -97,7 +97,6 @@ export const DirectionAwareHover = ({
               priority={true}
             />
           </motion.div>
-
           <motion.div
             variants={textVariants}
             transition={{
