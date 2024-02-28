@@ -1,13 +1,38 @@
-import { Playfair_Display } from "next/font/google";
+import { DirectionAwareHover } from "@/components/directionawarehover/directionawarehover";
+import Link from "next/link";
+import { fetchAllPosts } from "@/utils/data";
 
-const playfair = Playfair_Display({ subsets: ["latin"] });
+export default async function BlogsPage() {
+  const posts = await fetchAllPosts();
 
-export default function BlogPage() {
   return (
-    <div className={"container text-center mt-40 mx-auto"}>
-      <p className={`text-3xl lg:text-5xl text-text  ${playfair.className}`}>
-        Blog coming soon
-      </p>
-    </div>
+    <main className={"max-w-[70rem] mb-36 mx-auto px-5 lg:px-7 lg:text-lg"}>
+      {/* Heading */}
+      <div className={"mt-16 mb-4"}>
+        <h1 className={`font-semibold text-3xl text-white}`}>
+          Musings and Ramblings
+        </h1>
+        <p className={""}>
+          A collection of all the things I wrote in the recent past
+        </p>
+      </div>
+
+      {/* Posts */}
+      <div className="relative grid grid-cols-1 gap-10 mt-10">
+        {posts.map((post, idx) => {
+          return (
+            <DirectionAwareHover key={idx} imageUrl={post.bannerURL}>
+              <Link
+                href={`/blog/${post.id}`}
+                className="font-bold text-xl hover:text-highlight transition-colors duration-300"
+              >
+                {post.title}
+              </Link>
+              <p className="font-normal text-sm pt-2">{post.bannerText}</p>
+            </DirectionAwareHover>
+          );
+        })}
+      </div>
+    </main>
   );
 }
