@@ -18,7 +18,7 @@ export default async function BlogsPage() {
       </div>
 
       {/* Posts */}
-      <div className="relative grid grid-cols-1 gap-10 mt-10">
+      <div className="relative grid grid-cols-1 xl:grid-cols-2 gap-10 mt-10">
         {posts.map((post, idx) => {
           return (
             <DirectionAwareHover key={idx} imageUrl={post.bannerURL}>
