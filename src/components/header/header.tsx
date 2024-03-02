@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./navigation/navigation";
 import styles from "./header.module.css";
+import { validateRequest } from "@/utils/lucia";
 
-export default function Header() {
+export default async function Header() {
+  const { user } = await validateRequest();
+
   return (
     <header
       className={`border-b-[1px] border-b-bg-dark gap-6 grid grid-cols-2 justify-between outline outline-1 outline-bg-light pb-4 lg:pb-9 pt-7 lg:pt-9 px-3 lg:px-6 ${styles.header}`}
@@ -28,7 +31,7 @@ export default function Header() {
         </div>
       </Link>
 
-      <Navigation />
+      <Navigation isLoggedIn={!!user} />
     </header>
   );
 }

@@ -1,11 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import styles from "./navigation.module.css";
-import { usePathname } from "next/navigation";
+import { lucia, validateRequest } from "@/utils/lucia";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-export default function Navigation() {
-  const pathname = usePathname();
+export default async function Navigation({
+  isLoggedIn,
+}: {
+  isLoggedIn: boolean;
+}) {
+  const pathname = "/";
 
   return (
     <nav className={`items-center flex gap-3 justify-end  ${styles.navbar}`}>
@@ -20,11 +24,7 @@ export default function Navigation() {
         Home
       </Link>
       <Link
-        className={`${
-          pathname === "/blog" ? "bg-bg-light" : "text-text"
-        } duration-300 hover:bg-highlight hover:text-bg-light px-4 py-2 rounded-md transition-all text-sm lg:text-base ${
-          styles.link
-        }`}
+        className={` duration-300 hover:bg-highlight hover:text-bg-light px-4 py-2 rounded-md transition-all text-sm lg:text-base ${styles.link}`}
         href={"/blog"}
       >
         Blog
@@ -81,6 +81,51 @@ export default function Navigation() {
           ></path>
         </svg>
       </Link>
+      <div
+        className={`${pathname === "/" ? "bg-bg-light" : "text-text"}
+        ${
+          isLoggedIn
+            ? "bg-bg-light hover:bg-highlight hover:text-bg-light"
+            : "bg-highlight hover:bg-[#fea50b] text-bg-light"
+        }
+          px-3 py-2 rounded-md transition-colors duration-300 text-sm lg:text-base ${
+            styles.link
+          }`}
+      >
+        {isLoggedIn ? (
+          <form action={logout}>
+            <button>Logout</button>
+          </form>
+        ) : (
+          <Link href={` ${isLoggedIn ? "/logout" : "/login/github"}`}>
+            Login
+          </Link>
+        )}
+      </div>
     </nav>
   );
+}
+
+async function logout(): Promise<ActionResult> {
+  "use server";
+  const { session } = await validateRequest();
+  if (!session) {
+    return {
+      error: "Unauthorized",
+    };
+  }
+
+  await lucia.invalidateSession(session.id);
+
+  const sessionCookie = lucia.createBlankSessionCookie();
+  cookies().set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
+  return redirect("/");
+}
+
+interface ActionResult {
+  error: string | null;
 }
