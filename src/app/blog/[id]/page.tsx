@@ -1,16 +1,13 @@
 import { fetchPostByID } from "@/utils/data";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
-
+import LikeButton, { LikeButtonLink } from "@/components/likebutton/likebutton";
 import { ReactNode } from "react";
+import { validateRequest } from "@/utils/lucia";
 
 export default async function BlogPost({ params }: { params: { id: string } }) {
-  const post = (await fetchPostByID(params.id)) ?? {
-    title: "",
-    createdAt: new Date(),
-    content: "",
-    intro: "",
-  };
+  const post = (await fetchPostByID(params.id))!;
+  const { user } = await validateRequest();
 
   return (
     <main className={"mx-auto mb-36 max-w-[70rem] px-5 lg:px-7 lg:text-lg"}>
@@ -37,6 +34,15 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
         source={post.content}
         components={{ Paragraph: Paragraph, Picture: Picture }}
       />
+
+      {/* Likes section */}
+      <section className={"max-w-[40rem] mt-12"}>
+        {!!user ? (
+          <LikeButton id={post.id} initialLikes={post.likes} />
+        ) : (
+          <LikeButtonLink likes={post.likes} />
+        )}
+      </section>
     </main>
   );
 }
