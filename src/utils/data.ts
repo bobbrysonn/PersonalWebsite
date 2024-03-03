@@ -1,4 +1,7 @@
+"use server";
+
 import prisma from "@/utils/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function fetchAllPosts() {
   try {
@@ -38,5 +41,21 @@ export async function fetchPostByID(id: string) {
   } catch (error) {
     console.log(`Database Error: Failed to fetch post: ${id}`);
     throw new Error("Failed to fetch specified post");
+  }
+}
+
+export async function likePostByID(id: string) {
+  try {
+    const post = await prisma.post.update({
+      where: { id },
+      data: { likes: { increment: 1 } },
+    });
+
+    revalidatePath(`/blog/${id}`);
+    return post.likes;
+  } catch (error) {
+    console.log(`Database Error: Failed to like post: ${id}`);
+    console.log(error);
+    throw new Error("Failed to like specified post");
   }
 }
